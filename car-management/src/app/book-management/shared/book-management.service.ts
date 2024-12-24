@@ -14,4 +14,15 @@ export class BookManagementService {
 
         return of(TestBooks);
     }
+
+    getSelectedBook(id: string) {
+      //return this.httpClient.get<IBook>(ApiConnection + `/books/${id}`);
+
+      let book = TestBooks.find(f => f.id === id);
+
+      if(book == undefined)
+        book = TestBooks[0];
+
+      return of(book);
+    }
 }

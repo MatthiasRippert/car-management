@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { BookManagementComponent } from './book-management/book-management.component';
+import { BookManagementRoutes } from './book-management/book-management.routes';
 
 export const routes: Routes = [
   {
@@ -9,7 +10,6 @@ export const routes: Routes = [
   },
   {
     path: 'book-management',
-    loadComponent: () => import('./book-management/book-management.component').then(c => c.BookManagementComponent),
-    title: 'Bücherverwaltung'
+    loadChildren: () => import('./book-management/book-management.routes').then(c => c.BookManagementRoutes),
   }
 ];

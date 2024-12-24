@@ -1,7 +1,11 @@
+import { FormControl } from '@angular/forms';
+
 export interface IBookManagementState {
     books: IBook[];
     selectedBook: IBook;
-    loading: boolean;
+    loadingFlags: Flag;
+    showFlags: Flag;
+    editMode: boolean;
 }
 
 export interface IBook {
@@ -11,3 +15,6 @@ export interface IBook {
     category: string;
     author: string;
 }
+
+export type Flag = {[key: string]: boolean};
+export type WrappedFormControls<T> = { [k in keyof T]: FormControl<T[k]> };

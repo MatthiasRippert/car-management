@@ -1,6 +1,6 @@
 import { IBook } from './book-management.interface';
 
-export const TestBooks: IBook[] = [
+export let TestBooks: IBook[] = [
     {
         id: '6752acfb0b1eb77539accc01',
         bookName: 'Clean Code',
@@ -16,3 +16,9 @@ export const TestBooks: IBook[] = [
         author: 'Ralph Johnson'
     }
 ];
+
+export const PossibleBookCategories: string[] = ['Computers', 'Fantasy', 'Krimi', 'Biografie']
+
+export function addNewBook(book: IBook){
+  TestBooks = [...TestBooks, book];
+}

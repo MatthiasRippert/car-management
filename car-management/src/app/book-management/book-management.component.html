@@ -1,1 +1,12 @@
-{{books() | json}}
+<p-splitter [panelSizes]="[25,75]" [style]="{height: '100vh'}" styleClass="mb-8">
+  <ng-template pTemplate>
+    <book-management-master class="h-full w-100"></book-management-master>
+  </ng-template>
+  <ng-template pTemplate>
+    <book-management-detail class="h-full w-100 mx-3"></book-management-detail>
+  </ng-template>
+</p-splitter>
+
+@if(showFlags()['showAddDialog']){
+  <add-new-book-dialog></add-new-book-dialog>
+}

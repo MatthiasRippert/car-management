@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+.dashhead {
+  --cl-dashhead-divider-bg: var(--bs-border-color-translucent);
+  margin-top: 1rem;
+}
+
+.dashhead-title {
+  margin-bottom: 0.8rem;
+  font-weight: 100;
+}
+
+.dashhead-subtitle {
+  font-size: 95%;
+  color: var(--bs-secondary);
+}
+
+.dashhead-toolbar {
+  --cl-kendo-widget-min-width: 10em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dashhead-toolbar .btn {
+  border-color: transparent;
+}
+
+.dashhead-toolbar .dashhead-toolbar-item,
+.dashhead-toolbar .btn-group .btn + .btn {
+  margin-left: 0;
+}
+
+.dashhead-toolbar .form-label {
+  font-weight: normal;
+}
