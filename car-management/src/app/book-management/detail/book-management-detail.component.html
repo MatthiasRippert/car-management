@@ -10,21 +10,26 @@
 
             <div>
                 @if (!editMode()) {
-                    <button type="button" class="dashhead-toolbar-item btn btn-light me-2" title="Bearbeiten" (click)="startEditMode()">
-                        <span class="d-none d-sm-inline">Bearbeiten</span>
-                    </button>
                     <button type="button" class="dashhead-toolbar-item btn btn-light me-2" title="Bearbeiten" (click)="showAddBookDialog()">
-                        <span class="d-none d-sm-inline">Hinzufügen</span>
+                        <i class="bi bi-plus-lg"></i>
+                        Hinzufügen
+                    </button>
+                    <button type="button" class="dashhead-toolbar-item btn btn-light me-2" title="Bearbeiten" (click)="startEditMode()">
+                        <i class="bi bi-pencil"></i>
+                        Bearbeiten
                     </button>
                     <button type="button" class="dashhead-toolbar-item btn btn-light" title="Bearbeiten" (click)="deleteBook()">
-                        <span class="d-none d-sm-inline">Löschen</span>
+                        <i class="bi bi-trash"></i>
+                        Löschen
                     </button>
                 } @else {
                     <button type="button" class="dashhead-toolbar-item btn btn-light me-2" title="Speichern" (click)="saveBook()">
-                        <span class="d-none d-sm-inline">Speichern</span>
+                      <i class="bi bi-check-lg"></i>
+                      Speichern
                     </button>
                     <button type="button" class="dashhead-toolbar-item btn btn-light" title="Abbrechen" (click)="stopEditMode()">
-                        <span class="d-none d-sm-inline">Abbrechen</span>
+                      <i class="bi bi-x-lg"></i>
+                      Abbrechen
                     </button>
                 }
             </div>
