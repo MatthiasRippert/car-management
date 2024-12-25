@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Toast } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialog } from 'primeng/confirmdialog';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, Toast],
+  imports: [RouterOutlet, Toast, ConfirmDialog],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    providers: [MessageService]
+    providers: [MessageService, ConfirmationService]
 })
 export class AppComponent {
   title = 'car-management';

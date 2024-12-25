@@ -1,59 +1,60 @@
-@if(selectedBook().id != ''){
-  @let book = selectedBook();
+@if (selectedBook().id != undefined) {
+    @let book = selectedBook();
 
-  <div class="dashhead">
-      <h1 class="dashhead-subtitle">
-        {{book.author}}
-      </h1>
-      <div class="d-flex justify-content-between">
-        <h2 class="dashhead-title">{{ book.bookName }}</h2>
+    <div class="dashhead">
+        <h1 class="dashhead-subtitle">
+            {{ book.author }}
+        </h1>
+        <div class="d-flex justify-content-between">
+            <h2 class="dashhead-title">{{ book.bookName }}</h2>
 
-        <div>
-          @if(!editMode()){
-            <button type="button" class="dashhead-toolbar-item btn btn-light me-2" title="Bearbeiten" (click)="startEditMode()">
-              <span class="d-none d-sm-inline">Bearbeiten</span>
-            </button>
-            <button type="button" class="dashhead-toolbar-item btn btn-light" title="Bearbeiten" (click)="showAddBookDialog()">
-              <span class="d-none d-sm-inline">Hinzufügen</span>
-            </button>
-          }
-          @else{
-            <button type="button" class="dashhead-toolbar-item btn btn-light me-2" title="Speichern" (click)="saveBook()">
-              <span class="d-none d-sm-inline">Speichern</span>
-            </button>
-            <button type="button" class="dashhead-toolbar-item btn btn-light" title="Abbrechen" (click)="stopEditMode()">
-              <span class="d-none d-sm-inline">Abbrechen</span>
-            </button>
-          }
+            <div>
+                @if (!editMode()) {
+                    <button type="button" class="dashhead-toolbar-item btn btn-light me-2" title="Bearbeiten" (click)="startEditMode()">
+                        <span class="d-none d-sm-inline">Bearbeiten</span>
+                    </button>
+                    <button type="button" class="dashhead-toolbar-item btn btn-light me-2" title="Bearbeiten" (click)="showAddBookDialog()">
+                        <span class="d-none d-sm-inline">Hinzufügen</span>
+                    </button>
+                    <button type="button" class="dashhead-toolbar-item btn btn-light" title="Bearbeiten" (click)="deleteBook()">
+                        <span class="d-none d-sm-inline">Löschen</span>
+                    </button>
+                } @else {
+                    <button type="button" class="dashhead-toolbar-item btn btn-light me-2" title="Speichern" (click)="saveBook()">
+                        <span class="d-none d-sm-inline">Speichern</span>
+                    </button>
+                    <button type="button" class="dashhead-toolbar-item btn btn-light" title="Abbrechen" (click)="stopEditMode()">
+                        <span class="d-none d-sm-inline">Abbrechen</span>
+                    </button>
+                }
+            </div>
         </div>
-      </div>
-  </div>
+    </div>
 
-  <form [formGroup]="formGroup">
-    <div class="mb-3">
-      <label for="id" class="form-label">Id</label>
-      <input type="text" class="form-control" id="id" formControlName="id"/>
-    </div>
-    <div class="mb-3">
-      <label for="bookName" class="form-label">Name</label>
-      <input type="text" class="form-control" id="bookName" formControlName="bookName" />
-    </div>
-    <div class="mb-3">
-      <label for="author" class="form-label">Autor</label>
-      <input type="text" class="form-control" id="author" formControlName="author" />
-    </div>
-    <div class="mb-3">
-      <label for="category" class="form-label">Kategorie</label>
-      @if(!editMode()){
-        <input type="text" class="form-control" id="category" formControlName="category" />
-      }
-      @else{
-        <p-select [options]="possibleCategories" id="category" formControlName="category" class="form-control w-full"></p-select>
-      }
-    </div>
-    <div class="mb-3">
-      <label for="price" class="form-label">Preis</label>
-      <input type="number" class="form-control" id="price" formControlName="price" />
-    </div>
-  </form>
+    <form [formGroup]="formGroup">
+        <div class="mb-3">
+            <label for="id" class="form-label">Id</label>
+            <input type="text" class="form-control" id="id" formControlName="id" />
+        </div>
+        <div class="mb-3">
+            <label for="bookName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="bookName" formControlName="bookName" />
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Autor</label>
+            <input type="text" class="form-control" id="author" formControlName="author" />
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Kategorie</label>
+            @if (!editMode()) {
+                <input type="text" class="form-control" id="category" formControlName="category" />
+            } @else {
+                <p-select [options]="possibleCategories" id="category" formControlName="category" class="form-control w-full"></p-select>
+            }
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Preis</label>
+            <input type="number" class="form-control" id="price" formControlName="price" />
+        </div>
+    </form>
 }

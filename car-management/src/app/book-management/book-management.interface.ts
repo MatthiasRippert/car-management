@@ -1,14 +1,14 @@
 import { FormControl } from '@angular/forms';
 
 export interface IBookManagementState {
-    books: IBook[];
-    selectedBook: IBook;
+    books: Book[];
+    selectedBook: IBookResponse;
     loadingFlags: Flag;
     showFlags: Flag;
     editMode: boolean;
 }
 
-export interface IBook {
+export interface IBookResponse {
     id: string;
     bookName: string;
     price: number;
@@ -16,5 +16,15 @@ export interface IBook {
     author: string;
 }
 
-export type Flag = {[key: string]: boolean};
+export interface IAddBookFrom extends Omit<IBookResponse, 'id'> {}
+
+export interface IMasterFilter {
+    bookName: string;
+    priceRange: number[];
+    category: string;
+    author: string;
+}
+
+export type Flag = { [key: string]: boolean };
 export type WrappedFormControls<T> = { [k in keyof T]: FormControl<T[k]> };
+export type Book = IBookResponse & { show: boolean };

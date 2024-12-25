@@ -1,10 +1,10 @@
-import { IBook } from './book-management.interface';
+import { IBookResponse } from './book-management.interface';
 
-export let TestBooks: IBook[] = [
+export let TestBooks: IBookResponse[] = [
     {
         id: '6752acfb0b1eb77539accc01',
         bookName: 'Clean Code',
-        price: 43.15,
+        price: 10.99,
         category: 'Computers',
         author: 'Robert C. Martin'
     },
@@ -17,8 +17,8 @@ export let TestBooks: IBook[] = [
     }
 ];
 
-export const PossibleBookCategories: string[] = ['Computers', 'Fantasy', 'Krimi', 'Biografie']
+export const PossibleBookCategories: string[] = ['Computers', 'Fantasy', 'Krimi', 'Biografie'];
 
-export function addNewBook(book: IBook){
-  TestBooks = [...TestBooks, book];
+export function addNewBook(book: IBookResponse) {
+    TestBooks = [...TestBooks, book];
 }

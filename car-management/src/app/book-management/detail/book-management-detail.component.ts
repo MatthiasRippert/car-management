@@ -1,20 +1,15 @@
 import { Component, effect, inject, OnInit, untracked } from '@angular/core';
 import { BookManagementStore } from '../book-management.store';
-import { JsonPipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { IBook, WrappedFormControls } from '../book-management.interface';
+import { Book, IBookResponse, WrappedFormControls } from '../book-management.interface';
 import { PossibleBookCategories } from '../test-data';
 import { Select } from 'primeng/select';
 
 @Component({
-  standalone: true,
-  selector: 'book-management-detail',
-  imports: [
-    JsonPipe,
-    ReactiveFormsModule,
-    Select
-  ],
-  templateUrl: 'book-management-detail.component.html'
+    standalone: true,
+    selector: 'book-management-detail',
+    imports: [ReactiveFormsModule, Select],
+    templateUrl: 'book-management-detail.component.html'
 })
 export class BookManagementDetailComponent implements OnInit {
     private readonly store = inject(BookManagementStore);
@@ -22,56 +17,59 @@ export class BookManagementDetailComponent implements OnInit {
     selectedBook = this.store.selectedBook;
     editMode = this.store.editMode;
 
-    formGroup: FormGroup<WrappedFormControls<IBook>> = new FormGroup({
-      bookName: new FormControl<string>(undefined),
-      category: new FormControl<string>(undefined),
-      author: new FormControl<string>(undefined),
-      price: new FormControl<number>(undefined),
-      id: new FormControl<string>({value: undefined, disabled: true}),
-    })
+    formGroup: FormGroup<WrappedFormControls<IBookResponse>> = new FormGroup({
+        bookName: new FormControl<string>(undefined),
+        category: new FormControl<string>(undefined),
+        author: new FormControl<string>(undefined),
+        price: new FormControl<number>(undefined),
+        id: new FormControl<string>({ value: undefined, disabled: true })
+    });
 
     possibleCategories = PossibleBookCategories;
 
     constructor() {
-      effect(() => {
-        const selectedBook = this.store.selectedBook();
+        effect(() => {
+            const selectedBook = this.store.selectedBook();
 
-        untracked(() => {
-          this.formGroup.patchValue({...selectedBook});
-          this.formGroup.disable();
-        })
-      });
+            untracked(() => {
+                this.formGroup.patchValue({ ...selectedBook });
+                this.formGroup.disable();
+            });
+        });
 
-      effect(() => {
-        const editMode = this.editMode();
+        effect(() => {
+            const editMode = this.editMode();
 
-        untracked(() => {
-          if(editMode){
-            this.formGroup.enable();
-            this.formGroup.controls.id.disable();
-          }
-          else{
-            this.formGroup.disable();
-          }
-        })
-      });
+            untracked(() => {
+                if (editMode) {
+                    this.formGroup.enable();
+                    this.formGroup.controls.id.disable();
+                } else {
+                    this.formGroup.disable();
+                }
+            });
+        });
     }
 
     ngOnInit() {}
 
-    startEditMode(){
-      this.store.startEditMode();
+    startEditMode() {
+        this.store.startEditMode();
     }
 
-    stopEditMode(){
-      this.store.stopEditMode();
+    stopEditMode() {
+        this.store.stopEditMode();
     }
 
     saveBook() {
-      this.store.saveBook(this.formGroup.getRawValue() as IBook);
+        this.store.saveBook(this.formGroup.getRawValue() as IBookResponse);
     }
 
-    showAddBookDialog(){
+    showAddBookDialog() {
         this.store.showAddBookDialog();
+    }
+
+    deleteBook() {
+        this.store.deleteBook();
     }
 }

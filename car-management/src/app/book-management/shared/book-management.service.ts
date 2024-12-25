@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IBook } from '../book-management.interface';
-import { ApiConnection } from '../../api-connection';
+import { Book } from '../book-management.interface';
 import { of } from 'rxjs';
 import { TestBooks } from '../test-data';
 
@@ -12,7 +11,7 @@ export class BookManagementService {
     getBooks() {
         //return this.httpClient.get<IBook[]>(ApiConnection + '/books');
 
-        return of(TestBooks);
+        return of(TestBooks.map(book => ({...book, show: true} as Book)));
     }
 
     getSelectedBook(id: string) {
@@ -24,5 +23,11 @@ export class BookManagementService {
         book = TestBooks[0];
 
       return of(book);
+    }
+
+    deleteBook(id: string) {
+      //return this.httpClient.delete<void>(ApiConnection + `/books/${id}`)
+
+      return of(true);
     }
 }
